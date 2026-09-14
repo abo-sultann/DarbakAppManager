@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="bg">#0B0D10</color>
-    <color name="panel">#15191F</color>
-    <color name="panel_alt">#1D232B</color>
-    <color name="text_primary">#F7F7F7</color>
-    <color name="text_secondary">#AEB6C2</color>
+    <color name="bg">#0A1633</color>
+    <color name="panel">#102040</color>
+    <color name="panel_alt">#102B5C</color>
+    <color name="active">#173B6C</color>
+    <color name="border">#2D5573</color>
+    <color name="cyan">#19B5FF</color>
+    <color name="button_blue">#1976B9</color>
+    <color name="text_primary">#F3F8FF</color>
+    <color name="text_secondary">#D0E2F1</color>
+    <color name="text_muted">#A1B8D0</color>
     <color name="gold">#C9A44B</color>
-    <color name="safe">#58C488</color>
-    <color name="danger">#E45A5A</color>
+    <color name="safe">#4EC985</color>
+    <color name="warning">#F4AE42</color>
+    <color name="danger">#EC5858</color>
 </resources>
