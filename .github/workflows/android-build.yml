@@ -47,11 +47,21 @@ jobs:
           KEYSTORE_PATH: ${{ github.workspace }}/app/darbak-appmanager-stable.jks
         run: gradle :app:assembleRelease --no-daemon --stacktrace
 
-      - name: Verify APK signature and checksum
+      - name: Verify APK identity, signature and checksum
         run: |
           APK=app/build/outputs/apk/release/app-release.apk
           test -s "$APK"
-          jarsigner -verify -certs "$APK" >/dev/null
+          APKSIGNER=$(find "$ANDROID_HOME/build-tools" -type f -name apksigner | sort -V | tail -1)
+          AAPT=$(find "$ANDROID_HOME/build-tools" -type f -name aapt | sort -V | tail -1)
+          test -x "$APKSIGNER"
+          test -x "$AAPT"
+          "$APKSIGNER" verify --verbose --print-certs "$APK"
+          BADGING=$("$AAPT" dump badging "$APK")
+          echo "$BADGING" | grep -F "package: name='com.abosultan.darbakappmanager'"
+          echo "$BADGING" | grep -F "versionCode='2'"
+          echo "$BADGING" | grep -F "versionName='1.1.0'"
+          echo "$BADGING" | grep -F "sdkVersion:'25'"
+          echo "$BADGING" | grep -F "targetSdkVersion:'25'"
           sha256sum "$APK"
 
       - name: Upload Stable APK
